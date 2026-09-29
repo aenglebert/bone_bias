@@ -3,7 +3,14 @@ torch==2.0.1
 torchmetrics==1.0.1
 torchvision==0.15.2
 tqdm==4.65.0
+# numpy is pinned explicitly: pandas 2.0.3 / matplotlib 3.6.0 / torch 2.0.1 were built for numpy 1.x.
+# An unpinned numpy (or a pandas from another release) gives
+# "numpy.dtype size changed, may indicate binary incompatibility".
+numpy==1.24.4
 pandas==2.0.3
 matplotlib==3.6.0
 captum==0.6.0
-
+# analysis/compare_models.py and analysis/check_patient_leakage.py (also used by stats.ipynb)
+scipy==1.10.1
+scikit-learn==1.3.2
+tabulate==0.9.0
