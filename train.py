@@ -26,6 +26,8 @@ parser.add_argument("--mura_data_dir", type=str, default='./input/mura-v11',
                     help="path to MURA repository")
 parser.add_argument('--cast_dataset', dest='cast_dataset', action='store_true')
 parser.set_defaults(cast_dataset=False)
+parser.add_argument('--cast_redundancy', type=int, default=20,
+                    help="number of times each cast crop is repeated in the training set (paper: 20)")
 parser.add_argument('--val_fold', type=int, default=0,
                     help="fold to use as validation set, the other folds will be used for training")
 
@@ -118,6 +120,7 @@ def main():
                                 test_transforms=valid_transform,
                                 study_level=False,
                                 cast_dataset=args.cast_dataset,
+                                cast_redundancy=args.cast_redundancy,
                                 val_fold=args.val_fold)
     muradm.setup()
 

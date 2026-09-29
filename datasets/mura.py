@@ -264,7 +264,7 @@ class MuraDataModule(pl.LightningDataModule):
 
     def __init__(self, data_dir: str = '../input/mura-v11', train_transforms=None, test_transforms=None, batch_size=32,
                  num_workers=4, val_fold=0, study_level=False, study_level_validation=False, drop_last=False,
-                 cast_dataset=False):
+                 cast_dataset=False, cast_redundancy=20):
         super().__init__()
 
         # set directories values
@@ -276,7 +276,7 @@ class MuraDataModule(pl.LightningDataModule):
             print("Don't use cast dataset")
         else:
             print("Use cast dataset")
-            cast_redundancy = 5
+            # number of repetitions of each cast crop (paper: 20); set with --cast_redundancy in train.py
 
         # get train and validation df
         self.train_df, self.valid_df = mura_fold_df(self.data_dir,
